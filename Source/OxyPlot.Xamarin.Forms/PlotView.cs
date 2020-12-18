@@ -11,8 +11,6 @@ namespace OxyPlot.Xamarin.Forms
 {
     using System;
 
-    using OxyPlot;
-
     using global::Xamarin.Forms;
 
     /// <summary>

@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 Examples", "4 Examples", "{0AB67A65-9645-4DF6-98A2-D5734D212E7C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OxyPlot.Xamarin.Forms", "OxyPlot.Xamarin.Forms\OxyPlot.Xamarin.Forms.csproj", "{B63C5F8C-61C8-4E69-93D6-F49F816D3746}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OxyPlot.Xamarin.Forms", "OxyPlot.Xamarin.Forms\OxyPlot.Xamarin.Forms.csproj", "{B63C5F8C-61C8-4E69-93D6-F49F816D3746}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 Xamarin.Forms", "3 Xamarin.Forms", "{B0654A14-51FF-4DAC-A2CB-A6B9D269B9CA}"
 EndProject
@@ -651,6 +651,9 @@ Global
 		{BC883D94-FBB7-46AD-ADFC-2571E4C6FC35} = {B0654A14-51FF-4DAC-A2CB-A6B9D269B9CA}
 		{F2A015AC-B7E0-4452-99A5-B5106BF57E24} = {2137DFE4-114E-45AE-BBCD-6A454D1BF82C}
 		{45F9FFD0-0424-4DD2-9991-DABFF0FF8ED9} = {ED79F831-0097-4AEE-B734-15578C0F6F40}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A66CAAC3-5A60-45EB-81B6-B4B6C5D856AC}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Examples\Xamarin.Forms\SimpleDemo.Android\SimpleDemo.Android.csproj

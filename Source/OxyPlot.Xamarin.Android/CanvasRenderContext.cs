@@ -96,7 +96,7 @@ namespace OxyPlot.Xamarin.Android
         /// <param name="fill">The fill color.</param>
         /// <param name="stroke">The stroke color.</param>
         /// <param name="thickness">The thickness.</param>
-        public override void DrawEllipse(OxyRect rect, OxyColor fill, OxyColor stroke, double thickness)
+        public override void DrawEllipse(OxyRect rect, OxyColor fill, OxyColor stroke, double thickness, EdgeRenderingMode edgeRenderingMode)
         {
             this.paint.Reset();
             {
@@ -122,7 +122,7 @@ namespace OxyPlot.Xamarin.Android
         /// <param name="fill">The fill color.</param>
         /// <param name="stroke">The stroke color.</param>
         /// <param name="thickness">The stroke thickness.</param>
-        public override void DrawEllipses(IList<OxyRect> rectangles, OxyColor fill, OxyColor stroke, double thickness)
+        public override void DrawEllipses(IList<OxyRect> rectangles, OxyColor fill, OxyColor stroke, double thickness, EdgeRenderingMode edgeRenderingMode)
         {
             this.paint.Reset();
             {
@@ -152,14 +152,14 @@ namespace OxyPlot.Xamarin.Android
         /// <param name="dashArray">The dash array.</param>
         /// <param name="lineJoin">The line join type.</param>
         /// <param name="aliased">if set to <c>true</c> the shape will be aliased.</param>
-        public override void DrawLine(IList<ScreenPoint> points, OxyColor stroke, double thickness, double[] dashArray, LineJoin lineJoin, bool aliased)
+        public override void DrawLine(IList<ScreenPoint> points, OxyColor stroke, double thickness, EdgeRenderingMode edgeRenderingMode, double[] dashArray, LineJoin lineJoin)
         {
             this.paint.Reset();
             {
                 this.path.Reset();
                 {
-                    this.SetPath(points, aliased);
-                    this.SetStroke(stroke, thickness, dashArray, lineJoin, aliased);
+                    this.SetPath(points, edgeRenderingMode != EdgeRenderingMode.PreferSpeed);
+                    this.SetStroke(stroke, thickness, dashArray, lineJoin, edgeRenderingMode != EdgeRenderingMode.PreferSpeed);
                     this.canvas.DrawPath(this.path, this.paint);
                 }
             }
@@ -175,13 +175,13 @@ namespace OxyPlot.Xamarin.Android
         /// <param name="dashArray">The dash array.</param>
         /// <param name="lineJoin">The line join type.</param>
         /// <param name="aliased">If set to <c>true</c> the shape will be aliased.</param>
-        public override void DrawLineSegments(IList<ScreenPoint> points, OxyColor stroke, double thickness, double[] dashArray, LineJoin lineJoin, bool aliased)
+        public override void DrawLineSegments(IList<ScreenPoint> points, OxyColor stroke, double thickness, EdgeRenderingMode edgeRenderingMode, double[] dashArray, LineJoin lineJoin)
         {
             this.paint.Reset();
             {
-                this.SetStroke(stroke, thickness, dashArray, lineJoin, aliased);
+                this.SetStroke(stroke, thickness, dashArray, lineJoin, edgeRenderingMode != EdgeRenderingMode.PreferSpeed);
                 this.pts.Clear();
-                if (aliased)
+                if (edgeRenderingMode != EdgeRenderingMode.PreferSpeed)
                 {
                     foreach (var p in points)
                     {
@@ -212,13 +212,13 @@ namespace OxyPlot.Xamarin.Android
         /// <param name="dashArray">The dash array.</param>
         /// <param name="lineJoin">The line join type.</param>
         /// <param name="aliased">If set to <c>true</c> the shape will be aliased.</param>
-        public override void DrawPolygon(IList<ScreenPoint> points, OxyColor fill, OxyColor stroke, double thickness, double[] dashArray, LineJoin lineJoin, bool aliased)
+        public override void DrawPolygon(IList<ScreenPoint> points, OxyColor fill, OxyColor stroke, double thickness, EdgeRenderingMode edgeRenderingMode, double[] dashArray, LineJoin lineJoin)
         {
             this.paint.Reset();
             {
                 this.path.Reset();
                 {
-                    this.SetPath(points, aliased);
+                    this.SetPath(points, edgeRenderingMode != EdgeRenderingMode.PreferSpeed);
                     this.path.Close();
 
                     if (fill.IsVisible())
@@ -229,7 +229,7 @@ namespace OxyPlot.Xamarin.Android
 
                     if (stroke.IsVisible())
                     {
-                        this.SetStroke(stroke, thickness, dashArray, lineJoin, aliased);
+                        this.SetStroke(stroke, thickness, dashArray, lineJoin, edgeRenderingMode != EdgeRenderingMode.PreferSpeed);
                         this.canvas.DrawPath(this.path, this.paint);
                     }
                 }
@@ -243,7 +243,7 @@ namespace OxyPlot.Xamarin.Android
         /// <param name="fill">The fill color.</param>
         /// <param name="stroke">The stroke color.</param>
         /// <param name="thickness">The stroke thickness.</param>
-        public override void DrawRectangle(OxyRect rect, OxyColor fill, OxyColor stroke, double thickness)
+        public override void DrawRectangle(OxyRect rect, OxyColor fill, OxyColor stroke, double thickness, EdgeRenderingMode edgeRenderingMode)
         {
             this.paint.Reset();
             {
@@ -366,20 +366,21 @@ namespace OxyPlot.Xamarin.Android
         /// </summary>
         /// <param name="rect">The clip rectangle.</param>
         /// <returns>True if the clip rectangle was set.</returns>
-        public override bool SetClip(OxyRect rect)
+        public override void PushClip(OxyRect rect)
         {
             this.canvas.Save();
             this.canvas.ClipRect(this.Convert(rect));
-            return true;
         }
 
         /// <summary>
         /// Resets the clip rectangle.
         /// </summary>
-        public override void ResetClip()
+        public override void PopClip()
         {
             this.canvas.Restore();
         }
+
+        public override int ClipCount => this.canvas.ClipBounds == null ? 0 : 1;
 
         /// <summary>
         /// Draws the specified portion of the specified <see cref="OxyImage" /> at the specified location and with the specified size.

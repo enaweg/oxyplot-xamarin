@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -34,22 +34,28 @@
     <MtouchFastDev>true</MtouchFastDev>
     <IOSDebuggerPort>60849</IOSDebuggerPort>
     <DeviceSpecificBuild>false</DeviceSpecificBuild>
-    <MtouchVerbosity></MtouchVerbosity>
-    <MtouchLink></MtouchLink>
-    <MtouchHttpClientHandler></MtouchHttpClientHandler>
+    <MtouchVerbosity>
+    </MtouchVerbosity>
+    <MtouchLink>
+    </MtouchLink>
+    <MtouchHttpClientHandler>
+    </MtouchHttpClientHandler>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release</OutputPath>
-    <DefineConstants></DefineConstants>
+    <DefineConstants>
+    </DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
     <MtouchLink>SdkOnly</MtouchLink>
-    <MtouchVerbosity></MtouchVerbosity>
-    <MtouchHttpClientHandler></MtouchHttpClientHandler>
+    <MtouchVerbosity>
+    </MtouchVerbosity>
+    <MtouchHttpClientHandler>
+    </MtouchHttpClientHandler>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -60,14 +66,8 @@
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="OxyPlot.Core" Version="2.0.0" />
-    <PackageReference Include="NuGet.Build.Packaging">
-      <Version>0.2.2</Version>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
-    <PackageReference Include="Xamarin.Essentials" Version="1.3.1" />
-    <PackageReference Include="Xamarin.Forms" Version="4.3.0.908675" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
+    <PackageReference Include="Xamarin.Forms" Version="4.8.0.1687" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
@@ -78,13 +78,15 @@
     <Compile Include="PlotViewRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\OxyPlot.Xamarin.Forms\OxyPlot.Xamarin.Forms.csproj">
+      <Project>{eb313c83-63b4-48d6-bdfa-6a7762c99e63}</Project>
+      <Name>OxyPlot.Xamarin.Forms</Name>
+    </ProjectReference>
     <ProjectReference Include="..\OxyPlot.Xamarin.iOS\OxyPlot.Xamarin.iOS.csproj">
       <Project>{191ABC81-B335-44D7-BE0D-3C5E9196FA8B}</Project>
       <Name>OxyPlot.Xamarin.iOS</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\OxyPlot.Xamarin.Forms\OxyPlot.Xamarin.Forms.csproj">
-      <Project>{B63C5F8C-61C8-4E69-93D6-F49F816D3746}</Project>
-      <Name>OxyPlot.Xamarin.Forms</Name>
+      <IsAppExtension>false</IsAppExtension>
+      <IsWatchApp>false</IsWatchApp>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

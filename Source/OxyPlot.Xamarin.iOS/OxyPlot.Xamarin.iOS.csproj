@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\packages\NuGet.Build.Packaging.0.2.2\build\NuGet.Build.Packaging.props" Condition="Exists('..\packages\NuGet.Build.Packaging.0.2.2\build\NuGet.Build.Packaging.props')" />
   <PropertyGroup>
@@ -20,6 +20,8 @@
     <PackageProjectUrl>https://oxyplot.github.io/</PackageProjectUrl>
     <Title>OxyPlot for Xamarin.iOS</Title>
     <Description>OxyPlot is a plotting library for .NET. This package targets Xamarin.iOS.</Description>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -35,33 +37,39 @@
     <MtouchFastDev>true</MtouchFastDev>
     <IOSDebuggerPort>25463</IOSDebuggerPort>
     <DeviceSpecificBuild>false</DeviceSpecificBuild>
-    <MtouchVerbosity></MtouchVerbosity>
-    <MtouchLink></MtouchLink>
-    <MtouchHttpClientHandler></MtouchHttpClientHandler>
+    <MtouchVerbosity>
+    </MtouchVerbosity>
+    <MtouchLink>
+    </MtouchLink>
+    <MtouchHttpClientHandler>
+    </MtouchHttpClientHandler>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release</OutputPath>
-    <DefineConstants></DefineConstants>
+    <DefineConstants>
+    </DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
     <MtouchLink>SdkOnly</MtouchLink>
-    <MtouchVerbosity></MtouchVerbosity>
-    <MtouchHttpClientHandler></MtouchHttpClientHandler>
+    <MtouchVerbosity>
+    </MtouchVerbosity>
+    <MtouchHttpClientHandler>
+    </MtouchHttpClientHandler>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="OxyPlot, Version=2.1.0.0, Culture=neutral, PublicKeyToken=638079a8f0bd61e9, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\..\..\..\Dev\PinpointingRemoteControl\TitronRemoteControl_Xamarin\packages\OxyPlot.Core.2.1.0-Preview1\lib\netstandard2.0\OxyPlot.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Xamarin.iOS" />
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.Net.Http" />
-    <Reference Include="OxyPlot">
-      <HintPath>..\packages\OxyPlot.Core.2.0.0\lib\netstandard1.0\OxyPlot.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
@@ -74,7 +82,18 @@
     <Compile Include="PanZoomGestureRecognizer.cs" />
     <Compile Include="PlotView.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets" Condition="Exists('..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets'))" />
+    <Error Condition="!Exists('..\packages\NuGet.Build.Packaging.0.2.2\build\NuGet.Build.Packaging.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NuGet.Build.Packaging.0.2.2\build\NuGet.Build.Packaging.props'))" />
+    <Error Condition="!Exists('..\packages\NuGet.Build.Packaging.0.2.2\build\NuGet.Build.Packaging.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NuGet.Build.Packaging.0.2.2\build\NuGet.Build.Packaging.targets'))" />
+  </Target>
   <Import Project="..\packages\NuGet.Build.Packaging.0.2.2\build\NuGet.Build.Packaging.targets" Condition="Exists('..\packages\NuGet.Build.Packaging.0.2.2\build\NuGet.Build.Packaging.targets')" />
 </Project>

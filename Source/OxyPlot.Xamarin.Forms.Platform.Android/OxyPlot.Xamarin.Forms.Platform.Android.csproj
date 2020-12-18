@@ -1,23 +1,27 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{60D23CA9-4AF6-4179-A3F5-6AEBC907337E}</ProjectGuid>
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TemplateGuid>{9ef11e43-1701-4396-8835-8392d57abb70}</TemplateGuid>
     <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>OxyPlot.Xamarin.Forms.Platform.Android</RootNamespace>
     <AssemblyName>OxyPlot.Xamarin.Forms.Platform.Android</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>True</Deterministic>
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
-    <AndroidResgenClass>Resource</AndroidResgenClass>
-    <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
-    <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
-    <TargetFrameworkVersion>v8.1</TargetFrameworkVersion>
-    <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
+    <TargetFrameworkVersion>v9.0</TargetFrameworkVersion>
     <AndroidUseAapt2>true</AndroidUseAapt2>
-    <AndroidHttpClientHandlerType>Xamarin.Android.Net.AndroidClientHandler</AndroidHttpClientHandlerType>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackOnBuild>true</PackOnBuild>
     <PackageId>OxyPlot.Xamarin.Forms.Platform.Android</PackageId>
     <PackageVersion>2.0.0-preview0001</PackageVersion>
@@ -31,62 +35,62 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
+    <DebugType>portable</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;</DefineConstants>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <AndroidLinkMode>None</AndroidLinkMode>
-    <JavaMaximumHeapSize></JavaMaximumHeapSize>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>pdbonly</DebugType>
+    <DebugType>portable</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release</OutputPath>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <AndroidManagedSymbols>true</AndroidManagedSymbols>
-    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
-    <JavaMaximumHeapSize></JavaMaximumHeapSize>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="Mono.Android" />
+    <Reference Include="mscorlib" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
-    <Reference Include="System.IO.Compression" />
-    <Reference Include="System.Net.Http" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="OxyPlot.Core" Version="2.0.0" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.3.1" />
-    <PackageReference Include="Xamarin.Forms" Version="4.3.0.908675" />
-    <PackageReference Include="NuGet.Build.Packaging">
-      <Version>0.2.2</Version>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Resources\Resource.designer.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Forms.cs" />
     <Compile Include="PlotViewRenderer.cs" />
+    <Compile Include="Resources\Resource.designer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="28.0.0.3" />
+    <PackageReference Include="Xamarin.Essentials">
+      <Version>1.5.3.2</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Forms">
+      <Version>4.8.0.1687</Version>
+    </PackageReference>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\OxyPlot.Xamarin.Forms\OxyPlot.Xamarin.Forms.csproj">
-      <Project>{B63C5F8C-61C8-4E69-93D6-F49F816D3746}</Project>
-      <Name>OxyPlot.Xamarin.Forms</Name>
-    </ProjectReference>
     <ProjectReference Include="..\OxyPlot.Xamarin.Android\OxyPlot.Xamarin.Android.csproj">
-      <Project>{3296D69F-F4B7-44A5-AEB9-7A179E65F8DD}</Project>
+      <Project>{443c9ffb-064f-4697-8cac-6c8c1b880e8c}</Project>
       <Name>OxyPlot.Xamarin.Android</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OxyPlot.Xamarin.Forms\OxyPlot.Xamarin.Forms.csproj">
+      <Project>{b63c5f8c-61c8-4e69-93d6-f49f816d3746}</Project>
+      <Name>OxyPlot.Xamarin.Forms</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
 </Project>
